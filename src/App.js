@@ -6,11 +6,7 @@ import "./styles/app.css";
 const App = () => {
   return (
     <>
-      <BrowserRouter>
-        <Switch>
-          <Routes />
-        </Switch>
-      </BrowserRouter>
+      <Routes />
     </>
   );
 };

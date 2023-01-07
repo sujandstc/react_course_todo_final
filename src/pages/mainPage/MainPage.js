@@ -1,8 +1,8 @@
 import NavBar from "../NavBar";
 
 import { FaRegEye } from "react-icons/fa";
-import { CgOptions } from "react-icons/cg";
 import { Link } from "react-router-dom";
+import AuthCheck from "../../middleware/AuthCheck";
 
 const MainPage = () => {
   const getTodo = localStorage.getItem("todo")
@@ -16,19 +16,30 @@ const MainPage = () => {
       <div className="todo_container">
         <h3>Your to-do:</h3>
 
-        {getTodo.map((el, index) => (
+        {getTodo && getTodo.length > 0 ? (
           <>
-            <div className="single_todo">
-              {el}
+            {getTodo.map((el, index) => (
+              <>
+                <div className="single_todo">
+                  {el}
 
-              <div>
-                <Link to={`/view/${index}`}>
-                  <FaRegEye size={"20px"} />
-                </Link>
-              </div>
-            </div>
+                  <div>
+                    <Link to={`/view/${index}`}>
+                      <FaRegEye size={"20px"} />
+                    </Link>
+                  </div>
+                </div>
+              </>
+            ))}
           </>
-        ))}
+        ) : (
+          <>
+            <center>
+              {" "}
+              Nothing on your to-do. Please <Link to="/add">Add some</Link>
+            </center>
+          </>
+        )}
 
         {/* <div className="single_todo">Todo 1</div>
         <div className="single_todo">Todo 2</div> */}
